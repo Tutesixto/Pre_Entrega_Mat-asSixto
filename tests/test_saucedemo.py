@@ -2,31 +2,8 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import pytest
-from selenium.webdriver.common.by import By
-from utils.helpers import iniciar_navegador, cerrar_navegador
-
-@pytest.fixture
-def setup():
-    driver = iniciar_navegador()
-    yield driver
-    cerrar_navegador(driver)
-
-def test_login_exitoso(setup):
-    driver = setup
-    driver.get("https://www.saucedemo.com/")
-
-    # Ingreso de credenciales
-    driver.find_element(By.ID, "user-name").send_keys("standard_user")
-    driver.find_element(By.ID, "password").send_keys("secret_sauce")
-    driver.find_element(By.ID, "login-button").click()
-
-    # Validar login correcto
-    assert "inventory.html" in driver.current_url, "No se redirigió al inventario"
-    assert "Products" in driver.page_source, "No se encontró el texto 'Products'"
-
-    import pytest
-from selenium.webdriver.common.by import By
+import pytest  # type: ignore
+from selenium.webdriver.common.by import By  # type: ignore
 from utils.helpers import iniciar_navegador, cerrar_navegador
 
 @pytest.fixture
@@ -76,7 +53,8 @@ def test_catalogo_inventario(setup):
     primer_producto_precio = driver.find_element(By.CLASS_NAME, "inventory_item_price").text
     print(f"\nPrimer producto: {primer_producto_nombre} - Precio: {primer_producto_precio}")
 
-    # ---------- TEST 3: CARRITO ----------
+
+# ---------- TEST 3: CARRITO ----------
 def test_agregar_producto_al_carrito(setup):
     driver = setup
     driver.get("https://www.saucedemo.com/")
