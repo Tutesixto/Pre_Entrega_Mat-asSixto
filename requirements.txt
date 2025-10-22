@@ -1,0 +1,4 @@
+selenium #Permite automatizar el navegador.
+pytest #Framework para ejecutar tests.
+pytest-html #Genera el reporte en HTML.
+webdriver-manager #Descarga y administra automáticamente el ChromeDriver (sin configuración manual).
